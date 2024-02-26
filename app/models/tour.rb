@@ -1,4 +1,4 @@
 class Tour < ApplicationRecord
-  belongs_to :category_id
-  belongs_to :user_id
+  belongs_to :category
+  belongs_to :user
 end
