@@ -37,8 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_171635) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "booking_id", null: false
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -72,7 +70,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_171635) do
 
   add_foreign_key "bookings", "tours"
   add_foreign_key "bookings", "users"
-  add_foreign_key "reviews", "bookings"
   add_foreign_key "tours", "categories"
   add_foreign_key "tours", "users"
 end
