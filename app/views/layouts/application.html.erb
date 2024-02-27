@@ -11,6 +11,13 @@
   </head>
 
   <body>
+  <nav>
+      <% if user_signed_in? %>
+        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger m-4"  %>
+      <% else %>
+        <%= button_to "Log in", new_user_session_path, method: :get, class: "btn btn-primary m-4"  %>
+      <% end %>
+  </nav>
     <%= yield %>
   </body>
 </html>
