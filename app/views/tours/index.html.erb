@@ -2,7 +2,7 @@
   <h1>Tours available</h1>
 
   <% @tours.each do |tour| %>
-    <%= link_to tour_path(tour) do %>
+    <%= link_to tour_path(tour), class: "card-product-link" do %>
       <div class="card-product">
         <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
         <div class="card-product-infos">
