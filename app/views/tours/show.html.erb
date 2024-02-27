@@ -22,8 +22,21 @@
 # Show Booking_form if user is Guide through tour created
 # Show Clients_booked if user is Client through tour booked
 
-if @tour.user_id = @user.id as in logged in user_id 🔴 # HOW TO GET @user??
-  show Guide version
+<div>
+  <% if @tour.user == current_user %>
+    You have <%= @tour.bookings.count %> bookings for this tour:
+    <%= @tour.bookings do |b| %>
+    <%= b.date %>
 
-if @tour.user_id != @user.id
+    printing users... <%= booking.users do |u| %>
+    <%= u.name %>
+
+</div>
+
+if @tour.user == current_user as in logged in user_id 🔴 # HOW TO GET @user??
+  show Guide version
+<% end %>
+
+if @tour.user !== current_user
   show Client version
+<% end %>

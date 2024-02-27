@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 end
 
+#       tour GET    /tours/:id(.:format)                                  tours#show
+
 #    tour_bookings POST   /tours/:tour_id/bookings(.:format)              bookings#create
 # new_tour_booking GET    /tours/:tour_id/bookings/new(.:format)          bookings#new
 #     tour_booking GET    /tours/:tour_id/bookings/:id(.:format)          bookings#show
