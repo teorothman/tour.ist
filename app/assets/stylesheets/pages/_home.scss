@@ -1,1 +1,23 @@
 // Specific CSS for your home-page
+.search{
+height: 6vh;
+padding: 10px;
+border: none;
+background-color: inherit;
+width: 40vw;
+
+}
+
+.search-bar{
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: space-around;
+  width: 65vw;
+  background-color: white;
+}
+
+.search-button{
+  border: none;
+}

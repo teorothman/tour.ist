@@ -1,6 +1,17 @@
 <div class="container">
   <h1>Tours available</h1>
 
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="search-bar">
+    <%= form_tag "/", method: "GET" do %>
+      <%= text_field_tag :search_by_city, params[:search_by_city], placeholder: 'Search by city', class: 'search' %>
+      <%= button_tag(type: "submit", class: "btn") do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
   <% @tours.each do |tour| %>
     <div class="card-product">
       <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
