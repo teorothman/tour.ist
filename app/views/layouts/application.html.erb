@@ -11,6 +11,21 @@
   </head>
 
   <body>
+    <nav class="d-flex align-items-between justify-content-between">
+      <h1 class="m-4">TOUR.IST</h1>
+      <% unless current_page?(new_user_session_path) %>
+        <% if user_signed_in? %>
+          <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger m-4 align-self-end"  %>
+        <% else %>
+          <%= button_to "Log in", new_user_session_path, method: :get, class: "btn btn-primary m-4"  %>
+        <% end %>
+      <% end %>
+    </nav>
+    <div class="container">
+    <%= render "shared/flashes" %>
     <%= yield %>
+    </div>
   </body>
 </html>
+
+

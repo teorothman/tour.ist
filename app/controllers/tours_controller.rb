@@ -1,23 +1,29 @@
 class ToursController < ApplicationController
-
-  def new
-    @tour = Tour.new
+  def index
+    @tours = Tour.all
   end
 
-  def create
-    @tour = Tour.new(tour_params)
-    @tour.user = current_user
+  # def new
+  #   @tour = Tour.new
+  # end
 
-    if @tour.save
-      redirect_to root_path, notice: "Your tour was succesfully created"
-    else
-      render 'new', status: :unprocessable_entity
-    end
+  # def create
+  #   @tour = Tour.new(tour_params)
+  #   @tour.save! # add some if statement
+  # end
+
+  def show
+    @tour = Tour.find(params[:id])
   end
 
-  private
+  # private
 
-  def tour_params
-    params.require(:tour).permit(:title, :description, :duration, :max_spots, :price_per_person, :date, :category_id, :language, :location)
-  end
+  # def tour_params
+  #   params.require(:tour).permit(
+  #     :title, :description, :duration,
+  #     :max_spots, :price_per_person,
+  #     :date, :category_id, :user_id,
+  #     :language, :location
+  #   )
+  # end
 end

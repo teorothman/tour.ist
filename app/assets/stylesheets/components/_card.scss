@@ -1,0 +1,62 @@
+.card-product {
+  overflow: hidden;
+  width: 80vw;
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column; /* Change the flex direction to column */
+  align-items: flex-start; /* Align items to the start (top) of the container */
+  margin-top: 10px;
+  border-radius: 12px;
+}
+
+.card-product img {
+  height: 240px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.8;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 10px;
+  width: 100%;
+}
+
+.card-product .card-product-infos h2 {
+  font-size: 16px; /* Adjust as needed */
+  font-weight: bold;
+  text-align: left;
+}
+
+.card-product .card-product-infos .details-inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px; /* Adds some space between inline items */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-product .card-product-infos h2 .rating-detail {
+  font-weight: normal; /* Makes it not bold */
+  font-size: 14px; /* Makes the font size smaller than the rest of the h2 content */
+  /* You can adjust the font-size as needed to fit your design */
+}
