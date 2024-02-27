@@ -24,7 +24,7 @@ num = 0
 languages = ["Spanish", "English", "French", "Swedish"]
 locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
 10.times do
-  user = User.create! :email => "john#{num}@gmail.com", :password => 'topsecret', :password_confirmation => 'topsecret'
+  user = User.create! :first_name => "john#{num}", :last_name => "doe#{num}", :email => "john#{num}@gmail.com", :password => 'topsecret', :password_confirmation => 'topsecret'
   num += 1
   2.times do
     Tour.create! :title => 'Awesome Title', :description => 'Awesome description', :duration => rand(30..90), :max_spots => rand(1..100), :price_per_person => rand(10..100), :date => Date.tomorrow, :category_id => categories[rand(0..2)].id, :language => languages[rand(0..3)], :location => locations[rand(0..4)], :user_id => user.id
