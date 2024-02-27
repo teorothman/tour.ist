@@ -12,7 +12,7 @@
       <p>What makes the tour special: <%= @tour.description %></p>
     </div>
     <h2 class="card-trip-pricing"><%= @tour.price_per_person %> € per person</h2>
-    <h3 class="card-trip-pricing"> Guide: <%= @tour.user.email %></h3>
+    <h3 class="card-trip-pricing"> Guide: <%= @tour.user.first_name %></h3>
     <img src="https://kitt.lewagon.com/placeholder/users/krokrob"
     class="card-trip-user avatar-bordered" />
 
@@ -22,3 +22,7 @@
 # Show Booking_form if user is Guide through tour created
 # Show Clients_booked if user is Client through tour booked
 
+if @tour.user_id = @user.id as in logged in user_id 🔴 # HOW TO GET @user??
+  show Guide version
+
+if @tour.user_id != @user.id
