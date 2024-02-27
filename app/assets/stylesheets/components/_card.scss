@@ -1,13 +1,14 @@
 .card-product {
   overflow: hidden;
-  width: 250px;
+  width: 80vw;
+  max-width: 500px;
   margin: auto;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column; /* Change the flex direction to column */
   align-items: flex-start; /* Align items to the start (top) of the container */
-  margin-top: 6px;
+  margin-top: 10px;
   border-radius: 12px;
 }
 
@@ -34,20 +35,28 @@
 }
 
 .card-product .card-product-infos {
-  padding: 16px;
+  padding: 10px;
+  width: 100%;
 }
 
 .card-product .card-product-infos h2 {
-  margin: 0 0 8px; /* Adjust bottom margin to create space between the title and inline details */
   font-size: 16px; /* Adjust as needed */
   font-weight: bold;
+  text-align: left;
 }
 
 .card-product .card-product-infos .details-inline {
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px; /* Adds some space between inline items */
+  gap: 3px; /* Adds some space between inline items */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-product .card-product-infos h2 .rating-detail {
+  font-weight: normal; /* Makes it not bold */
+  font-size: 14px; /* Makes the font size smaller than the rest of the h2 content */
+  /* You can adjust the font-size as needed to fit your design */
 }
