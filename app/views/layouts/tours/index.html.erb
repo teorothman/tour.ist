@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Tours available</h1>
+
+  <% @tours.each do |tour| %>
+    <%= tour.title %>
+    <%= link_to tour.name, tour, class: "text-decoration-none" %>
+  <% end %>
+</div>
