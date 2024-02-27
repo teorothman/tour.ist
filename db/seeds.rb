@@ -1,6 +1,7 @@
 #Drop db
 
 puts "Dropping current data"
+Booking.destroy_all
 Tour.destroy_all
 Category.destroy_all
 User.destroy_all
@@ -29,4 +30,11 @@ locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
   2.times do
     Tour.create! :title => 'Awesome Title', :description => 'Awesome description', :duration => rand(30..90), :max_spots => rand(1..100), :price_per_person => rand(10..100), :date => Date.tomorrow, :category_id => categories[rand(0..2)].id, :language => languages[rand(0..3)], :location => locations[rand(0..4)], :user_id => user.id
   end
+end
+
+# Creating 3 bookings for last tour
+puts "Creating 3 bookings for last tour"
+
+User.excluding(Tour.last.user).sample(3).each do |u|
+  Booking.create! tour: Tour.last, user: u
 end

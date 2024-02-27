@@ -24,19 +24,21 @@
 
 <div>
   <% if @tour.user == current_user %>
-    You have <%= @tour.bookings.count %> bookings for this tour:
-    <%= @tour.bookings do |b| %>
-    <%= b.date %>
-
-    printing users... <%= booking.users do |u| %>
-    <%= u.name %>
-
+    👉 show Guide version
+    <p>You have <%= @tour.bookings.count %> bookings</p>
+    <p>for your tour <%= @tour.title %> on <%= @tour.date %></p>
+      <%= @tour.bookings do |b| %>
+        <% if b.is_private = true %>
+          <p>* Private booking by <%= b.user.name %></p>
+        <% else %>
+          <p>People booking this tour:</p>
+          <%= b.user.first_name %> has booked: 🔴 add number of people in booking DB
+          <p>Spots left:</p> <%= @tour.max_spots.count - 🔴 %>
+        <% end %>
+      <% end %>
+  <% end %>
 </div>
 
-if @tour.user == current_user as in logged in user_id 🔴 # HOW TO GET @user??
-  show Guide version
-<% end %>
 
 if @tour.user !== current_user
   show Client version
-<% end %>
