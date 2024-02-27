@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Tours available</h1>
+
+  <% @tours.each do |tour| %>
+    <div class="card-product">
+      <div class="card-product-infos">
+      <h2><%= tour.title %></h2>
+      <p>⌛️ <%= tour.duration %> min</p>
+      <p><%= tour.price_per_person %>€/🙋‍♂️ </p>
+      <p>🗣️ <%= tour.language %></p>
+      <p>⭐️ <%= tour.user.average_rating %> (<%= tour.user.total_rating %>)</p>
+      </div>
+    </div>
+  <% end %>
+</div>
