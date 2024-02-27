@@ -8,7 +8,7 @@
       <h2><%= @tour.title %> in <%= @tour.location %> | Language: <%= @tour.language %></h2>
 
       <p>Duration: <%= @tour.duration %> min</p>
-      <p>Spots left: <%= @tour.max_spots%> - spots booked</p>
+      <p>Spots left: <%= @tour.spots_left%> </p>
       <p>What makes the tour special: <%= @tour.description %></p>
     </div>
     <h2 class="card-trip-pricing"><%= @tour.price_per_person %> € per person</h2>
@@ -32,13 +32,11 @@
           <p>* Private booking by <%= b.user.name %></p>
         <% else %>
           <p>People booking this tour:</p>
-          <%= b.user.first_name %> has booked: 🔴 add number of people in booking DB
-          <p>Spots left:</p> <%= @tour.max_spots.count - 🔴 %>
+          <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
+
+          <p>Spots left: <%= @tour.seats_left %> </p>
+
         <% end %>
       <% end %>
   <% end %>
 </div>
-
-
-if @tour.user !== current_user
-  show Client version

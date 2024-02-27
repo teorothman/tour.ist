@@ -36,5 +36,5 @@ end
 puts "Creating 3 bookings for last tour"
 
 User.excluding(Tour.last.user).sample(3).each do |u|
-  Booking.create! tour: Tour.last, user: u
+  Booking.create! tour: Tour.last, user: u, nb_of_people: 1
 end
