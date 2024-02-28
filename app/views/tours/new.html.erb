@@ -1,7 +1,7 @@
 <h1>Create Your Own Tour</h1>
 <%= simple_form_for @tour do |f| %>
   <div>
-    <%= f.input :description, presence: true, error: 'Descrition is mandatory' %>
+    <%= f.input :description, presence: true, error: 'Description is mandatory' %>
     <%= f.input :title, presence: true %>
     <%= f.input :duration, presence: true, numericality: { only_integer: true }%>
     <%= f.input :max_spots, presence: true, numericality: { only_integer: true } %>
