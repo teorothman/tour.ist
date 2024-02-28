@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   def average_rating
     if reviews.any?
-      reviews.average(:rating).to_f
+      reviews.average(:rating).to_f.round(1)
     else
       0.0
     end
