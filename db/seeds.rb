@@ -25,6 +25,13 @@ puts "creating 10 users with 2 tours each"
 
 languages = ["Spanish", "English", "French", "Swedish"]
 locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
+dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
+
+admin_user = User.create! first_name: "Martin",
+                          last_name: "Miranda",
+                          email: "martin@gmail.com",
+                          password: 'topsecret'
+
 10.times do
   f_name = Faker::Name.unique.first_name
 
@@ -38,9 +45,13 @@ locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
     category = categories[rand(0..2)]
     title = "A #{category.title.downcase} tour of #{location}"
     description = "Explore the heart of #{location} with #{user.first_name}... #{category.description}"
-    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.tomorrow, category: category, language: languages[rand(0..3)], location: location, user: user
+    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: user
   end
 end
+
+# THIS WAS TO CREATE FIXED ADMIN TOUR AND BOOKINGS
+# tour_admin = Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: admin_user
+# Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3
 
 # Creating 3 bookings for last tour
 puts "Creating 3 bookings for last tour"
