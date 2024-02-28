@@ -3,3 +3,24 @@
 @import "avatar";
 @import "form_legend_clear";
 @import "navbar";
+
+.container h1 {
+  text-align: center; /* Center the title */
+  color: #333; /* Dark gray color for the text */
+  font-size: 28px; /* Adjust the size as needed */
+  font-weight: bold; /* Make it bold */
+  margin-top: 20px; /* Add some space at the top */
+  margin-bottom: 20px; /* Add some space at the bottom */
+  font-family: 'Arial', sans-serif; /* Use a specific font */
+  text-transform: uppercase; /* UPPERCASE letters */
+  letter-spacing: 2px; /* Increase spacing between letters */
+}
+
+a.card-product-link, a.card-product-link:visited {
+  color: inherit; /* Inherits the text color from the parent element */
+  text-decoration: none; /* Removes underline from the link */
+}
+
+a.card-product-link:hover {
+  text-decoration: none; /* Optional: Change or remove for hover effects */
+}
