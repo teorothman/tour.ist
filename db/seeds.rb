@@ -38,7 +38,7 @@ locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
     category = categories[rand(0..2)]
     title = "A #{category.title.downcase} tour of #{location}"
     description = "Explore the heart of #{location} with #{user.first_name}... #{category.description}"
-    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..100), price_per_person: rand(10..100), date: Date.tomorrow, category: category, language: languages[rand(0..3)], location: location, user: user
+    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.tomorrow, category: category, language: languages[rand(0..3)], location: location, user: user
   end
 end
 
