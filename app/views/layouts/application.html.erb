@@ -26,6 +26,25 @@
     <%= yield %>
     </div>
   </body>
+  <footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <%= link_to 'Tours available', root_path %>
+    </div>
+    <div class="footer-section">
+      <% if user_signed_in? %>
+        <%= link_to 'My Tours', my_tours_path %>
+      <% else %>
+        <%= link_to 'Log In', new_user_session_path %> /
+        <%= link_to 'Sign Up', new_user_registration_path %>
+      <% end %>
+    </div>
+      <% if user_signed_in? %>
+        <div class="footer-section">
+          <h3><%= link_to 'Profile', profile_path %></h3>
+        </div>
+      <% end %>
+  </div>
+</footer>
+
 </html>
-
-
