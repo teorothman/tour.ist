@@ -3,6 +3,7 @@ require 'faker'
 #Drop db
 
 puts "Dropping current data"
+Review.destroy_all
 Booking.destroy_all
 Tour.destroy_all
 Category.destroy_all
@@ -18,7 +19,6 @@ cat_2 = Category.create! title: 'Segway', description: 'Segway tour for the adve
 categories << cat_2
 cat_3 = Category.create! title: 'Biking', description: 'Tour for the ones who want to explore a lot!!!'
 categories << cat_3
-
 
 # Creating 10 users with 2 tours each
 puts "creating 10 users with 2 tours each"
@@ -59,3 +59,4 @@ puts "Creating 3 bookings for last tour"
 User.excluding(Tour.last.user).sample(3).each do |u|
   Booking.create! tour: Tour.last, user: u, nb_of_people: 1
 end
+
