@@ -1,2 +1,24 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.logo{
+  transform: rotate(180deg);
+  width: 50px;
+}
+
+.btn-primary {
+  background-color: #E1565B;
+  border: 1px solid #E1565B;
+}
+
+
+.btn-primary:active {
+  background-color: #D0453A;
+  border-color: #D0453A;
+}
+
+.btn-primary:focus {
+  background-color: #D0453A;
+  border-color: #D0453A;
+  outline: none;
+}

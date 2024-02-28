@@ -1,0 +1,13 @@
+<%= link_to tour_path(tour), class: "card-product-link" do %>
+  <div class="card-product">
+    <img class="tour-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
+    <div class="card-product-infos">
+    <h2><%= tour.title %> <span class="rating-detail"><i class="fa-solid fa-star"></i> <%= tour.user.average_rating %> (<%= tour.user.total_rating %>)</span></h2>
+    <div class="details-inline">
+      <p><i class="fa-solid fa-hourglass-start"></i> <%= tour.duration %> min</p>
+      <p>€<%= tour.price_per_person %> / person</p>
+      <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+    </div>
+    </div>
+  </div>
+<% end %>
