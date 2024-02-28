@@ -13,4 +13,11 @@
 
 
 // Card product from Le Wagon
-@import "components/card"
+@import "components/card";
+
+@import "components/footer";
+@import "pages/login";
+
+body {
+  padding-bottom: 45px;
+}

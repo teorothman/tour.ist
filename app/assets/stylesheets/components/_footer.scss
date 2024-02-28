@@ -1,0 +1,33 @@
+footer {
+  position: fixed; /* Fix the position relative to the viewport */
+  bottom: 0; /* Anchor the footer to the bottom of the viewport */
+  left: 0; /* Stretch the footer across the bottom */
+  width: 100%; /* Ensure the footer extends full width */
+  background-color: #f8f9fa; /* Background color */
+  padding: 10px 0; /* Padding for aesthetic spacing */
+  height: 45px;
+  text-align: center; /* Center the footer content */
+  z-index: 1000; /* Ensure the footer stays on top of other content */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+
+.footer-section a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-section h3 {
+  font-size: 15px;
+  line-height: 1.8;
+}

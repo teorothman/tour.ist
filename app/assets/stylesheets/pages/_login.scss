@@ -1,0 +1,18 @@
+/* Base styles for both links */
+.auth-link {
+  display: inline-block; /* Adjust display to your needs */
+  margin: 8px 0; /* Space out the links */
+  color: #007bff; /* Bootstrap primary color for consistency */
+  text-decoration: none; /* Remove underline */
+}
+
+
+/* Specific styles for the Forgot your password link */
+.auth-link-forgot {
+  color: #6c757d; /* Bootstrap secondary text color for distinction */
+}
+
+/* Hover effects */
+.auth-link:hover {
+  text-decoration: underline; /* Add underline on hover for better UX */
+}

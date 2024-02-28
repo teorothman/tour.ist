@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :tours, only: [:show, :new, :create] do
     resources :bookings, only: [:new, :create, :show]
   end
+
+  get 'my_tours', to: 'tours#my_tours', as: :my_tours
+  get 'profile', to: 'users#show', as: :profile
 end
 
 #       tour GET    /tours/:id(.:format)                                  tours#show

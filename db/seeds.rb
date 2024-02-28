@@ -1,6 +1,7 @@
 #Drop db
 
 puts "Dropping current data"
+Booking.destroy_all
 Tour.destroy_all
 Category.destroy_all
 User.destroy_all

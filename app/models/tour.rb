@@ -7,4 +7,12 @@ class Tour < ApplicationRecord
 
   validates :title, :description, :duration, :max_spots, :price_per_person, :date, :category_id, :language, :location, presence: true
   validates :max_spots, :price_per_person, :duration, numericality: { only_integer: true }
+
+  def spots_left
+    # n = 0
+    # bookings.each do |b|
+    #   n += b.nb_of_people
+    # end
+    max_spots - bookings.pluck(:nb_of_people).sum
+  end
 end

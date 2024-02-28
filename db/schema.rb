@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_104414) do
     t.boolean "is_private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "nb_of_people"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
