@@ -30,6 +30,14 @@
             <h3>Profile</h3>
           <% end %>
         </div>
+        <% end %>
+      <% if user_signed_in? %>
+        <div class="footer-section <%= 'current-section' if current_page?(new_tour_path) %>">
+          <%= link_to new_tour_path do %>
+            <i class="fa-solid fa-plus"></i>
+            <h3>Create Tour</h3>
+          <% end %>
+        </div>
       <% end %>
     </div>
 </footer>
