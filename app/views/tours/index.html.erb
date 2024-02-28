@@ -4,7 +4,7 @@
   <% @tours.each do |tour| %>
     <%= link_to tour_path(tour), class: "card-product-link" do %>
       <div class="card-product">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
+        <img class="tour-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
         <div class="card-product-infos">
         <h2><%= tour.title %> <span class="rating-detail">⭐️ <%= tour.user.average_rating %> (<%= tour.user.total_rating %>)</span></h2>
         <div class="details-inline">

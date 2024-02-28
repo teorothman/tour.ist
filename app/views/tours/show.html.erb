@@ -1,42 +1,48 @@
+<div class="container">
+  <h1>Tour Details</h1>
 
-<h1>Tour Show Page</h1>
-
-<div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-  <div class="card-trip-infos">
-    <div>
-      <h2><%= @tour.title %> in <%= @tour.location %> | Language: <%= @tour.language %></h2>
-
-      <p>Duration: <%= @tour.duration %> min</p>
-      <p>Spots left: <%= @tour.spots_left%> </p>
-      <p>What makes the tour special: <%= @tour.description %></p>
-    </div>
-    <h2 class="card-trip-pricing"><%= @tour.price_per_person %> € per person</h2>
-    <h3 class="card-trip-pricing"> Guide: <%= @tour.user.first_name %></h3>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob"
-    class="card-trip-user avatar-bordered" />
-
+  <div class="card-product">
+    <img class="tour-img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="card-product-infos">
+        <h2>
+          <%= @tour.title %> in <%= @tour.location %> | 🗣️ <%= @tour.language %>
+        </h2>
+        <div>
+          <p>€<%= @tour.price_per_person %> / person</p>
+          <p>🗓️ <%= @tour.date %></p>
+          <p>⌛️ <%= @tour.duration %> min</p>
+          <p> 🟢 Spots left: <%= @tour.spots_left%> </p>
+        </div>
+        <p><%= @tour.description %></p>
+      </div>
   </div>
-</div>
 
-# Show Booking_form if user is Guide through tour created
-# Show Clients_booked if user is Client through tour booked
 
-<div>
-  <% if @tour.user == current_user %>
-    👉 show Guide version
-    <p>You have <%= @tour.bookings.count %> bookings</p>
-    <p>for your tour <%= @tour.title %> on <%= @tour.date %></p>
-      <%= @tour.bookings do |b| %>
-        <% if b.is_private = true %>
-          <p>* Private booking by <%= b.user.name %></p>
+    <div class="card-product">
+      <div class="card-product-infos">
+
+        <% if @tour.user == current_user %>
+          <h2>You have <%= @tour.bookings.count %> bookings</h2>
+          <% @tour.bookings.each do |b| %>
+
+              <% if b.is_private %>
+                <p>* Private booking by <%= b.user.first_name %></p>
+              <% else %>
+                <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
+              <% end %>
+          <% end %>
         <% else %>
-          <p>People booking this tour:</p>
-          <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-
-          <p>Spots left: <%= @tour.seats_left %> </p>
-
+            <div>
+              <p>💚 Thank you for booking with us!</p>
+              <p>Please arrive 10 min before the starting time and bring comfy clothes!</p>
+              <div class="card-product-infos">
+                <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/krokrob"/>
+                <h2> A tour by: <%= @tour.user.first_name %></h2>
+              </div>
+            </div>
         <% end %>
-      <% end %>
-  <% end %>
+
+      </div>
+    </div>
+
 </div>

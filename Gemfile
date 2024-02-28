@@ -78,3 +78,5 @@ end
 
 # Handles the users
 gem "devise"
+
+gem 'faker', '~> 3.2'
