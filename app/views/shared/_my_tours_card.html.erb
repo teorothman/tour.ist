@@ -1,4 +1,27 @@
-<div class="my-tour-card">
-  <%= tour.title %>
-  <%= tour.description %>
+<div class="my-tours-container">
+  <div class="row">
+    <div class="my-tour-card col-12">
+      <div class="my-tour-card-top-img" style="background-image: url(<%= asset_url('sample_tour.webp') %>);"></div>
+      <h2><%= tour.title %></h2>
+        <h6>Tour info:</h6>
+      <div class="my-tour-card-info-text">
+        <div>
+          <p><i class="fa-solid fa-people-group"></i></p>
+          <p><%= tour.max_spots%></p>
+        </div>
+        <div>
+          <p><i class="fa-solid fa-ticket"></i></p>
+          <p><%= tour.bookings.count %></p>
+        </div>
+        <div>
+          <p><i class="fa-solid fa-chair"></i></p>
+          <p><%= tour.spots_left %></p>
+        </div>
+        <div>
+          <p><i class="fa-regular fa-calendar-days"></i></p>
+          <p><%= tour.date %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

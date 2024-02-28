@@ -5,7 +5,9 @@
 
 
 <% if @prev_tours.count.zero?  %>
-  <p>You have no previous tours :(</p>
+  <div class="container d-flex align-items-center justify-content-center">
+    <p>You have no previous tours :(</p>
+  </div>
 <% else %>
   <%= render partial: 'shared/my_tours_card', collection: @prev_tours, as: :tour %>
 <% end %>
