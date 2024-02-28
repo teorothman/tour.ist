@@ -18,7 +18,6 @@ categories << cat_2
 cat_3 = Category.create! title: 'Biking', description: 'For the ones who want to explore a lot!!!'
 categories << cat_3
 
-
 # Creating 10 users with 2 tours each
 puts "creating 10 users with 2 tours each"
 
@@ -31,7 +30,8 @@ locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
   2.times do
     tour = Tour.create! title: 'Awesome Title', description: 'Awesome description', duration: rand(30..90), max_spots: rand(1..100), price_per_person: rand(10..100), date: Date.tomorrow, category_id: categories[rand(0..2)].id, language: languages[rand(0..3)], location: locations[rand(0..4)], user_id: user.id
     User.excluding(tour.user).sample(rand(0..tour.max_spots)).each do |user|
-      Booking.create! user: user, nb_of_people: 1, total_price: tour.price_per_person, tour: tour, is_private: false
+      booking = Booking.create! user: user, nb_of_people: 1, total_price: tour.price_per_person, tour: tour, is_private: false
+      Review.create! booking: booking, content: "great tour", rating: rand(4..5)
     end
   end
 end
