@@ -11,40 +11,41 @@
   </head>
 
   <body>
-    <nav class="d-flex align-items-between justify-content-between">
-      <h1 class="m-4">TOUR.IST</h1>
-      <% unless current_page?(new_user_session_path) %>
-        <% if user_signed_in? %>
-          <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger m-4 align-self-end"  %>
-        <% else %>
-          <%= button_to "Log in", new_user_session_path, method: :get, class: "btn btn-primary m-4"  %>
-        <% end %>
-      <% end %>
-    </nav>
     <div class="container">
     <%= render "shared/flashes" %>
     <%= yield %>
     </div>
   </body>
-  <footer>
-  <div class="footer-container">
-    <div class="footer-section">
-      <%= link_to 'Tours available', root_path %>
-    </div>
-    <div class="footer-section">
-      <% if user_signed_in? %>
-        <%= link_to 'My Tours', my_tours_path %>
-      <% else %>
-        <%= link_to 'Log In', new_user_session_path %> /
-        <%= link_to 'Sign Up', new_user_registration_path %>
-      <% end %>
-    </div>
-      <% if user_signed_in? %>
-        <div class="footer-section">
-          <h3><%= link_to 'Profile', profile_path %></h3>
-        </div>
-      <% end %>
-  </div>
-</footer>
+  <% unless controller_name == 'sessions' ||
+            controller_name == 'registrations' %>
+    <footer>
+    <div class="footer-container">
+      <div class="footer-section <%= 'current-section' if current_page?(root_path) %>">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3><%= link_to 'Explore', root_path %></h3>
+      </div>
+      <div class="footer-section">
+        <% if user_signed_in? %>
+          <div class="footer-section <%= 'current-section' if current_page?(my_tours_path) %>">
+          <i class="fa-regular fa-heart"></i>
+          <h3><%= link_to 'My Tours', my_tours_path %></h3>
+          </div>
+        <% else %>
+          <div class="footer-section <%= 'current-section' if current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <h3><%= link_to 'Log In', new_user_session_path %> /
+            <%= link_to 'Sign Up', new_user_registration_path %></h3>
+          </div>
+        <% end %>
+      </div>
+        <% if user_signed_in? %>
+          <div class="footer-section <%= 'current-section' if current_page?(profile_path) %>">
+            <i class="fa-regular fa-user"></i>
+            <h3><%= link_to 'Profile', profile_path %></h3>
+          </div>
+        <% end %>
+      </div>
+    </footer>
+    <% end %>
 
 </html>

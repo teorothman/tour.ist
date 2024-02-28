@@ -4,6 +4,7 @@ footer {
   left: 0; /* Stretch the footer across the bottom */
   width: 100%; /* Ensure the footer extends full width */
   background-color: #f8f9fa; /* Background color */
+  border-top: 1px solid #ccc;
   padding: 10px 0; /* Padding for aesthetic spacing */
   text-align: center; /* Center the footer content */
   z-index: 1000; /* Ensure the footer stays on top of other content */
@@ -11,22 +12,33 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  max-width: 1200px;
+  justify-content: space-around; /* Adjust based on your layout */
+  align-items: center; /* Center items vertically */
+  background-color: #f8f9fa; /* Example background color */
+  padding: 2px 0; /* Add padding */
 }
 
-
-.footer-section a {
-  color: #007bff;
-  text-decoration: none;
+.footer-section {
+  text-align: center; /* Center the content */
 }
 
-.footer-section a:hover {
-  text-decoration: underline;
+.footer-section i {
+  font-size: 22px; /* Increase icon size */
+  color: #6c757d; /* Default grey color */
 }
 
 .footer-section h3 {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 12px; /* Smaller font size for h3 */
+  margin: 2px 0 0; /* Adjust spacing */
+  color: #6c757d; /* Default grey color */
+}
+
+.footer-section h3 a {
+  color: inherit; /* Ensure links inherit the color from h3 */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Dynamic coloring based on active page */
+.current-section i, .current-section h3 {
+  color: #000; /* Black for active section */
 }
