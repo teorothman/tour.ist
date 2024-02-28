@@ -1,0 +1,23 @@
+<%= link_to tour_path(tour.id) do %>
+<div class="container">
+  <h4 class="my-tour-card-header"><%= tour.date %></h4>
+  <div class="my-tour-card">
+    <div class="my-tour-card-left">
+      <div class="my-tour-card-left-text">
+        <p><%= tour.date %><p>
+        <% if tour.title.length > 38 %>
+            <% array = tour.title.split %>
+            <h5><%= array[0..3].join(" ") + "..." %></h5>
+            <% else %>
+            <h5><%= tour.title %></h5>
+        <% end %>
+        <p><%= tour.language %></p>
+        <p><%= tour.bookings.count %>/ <%= tour.max_spots %></p>
+      </div>
+    </div>
+    <div class="my-tour-card-right">
+      <div class="my-tour-card-right-image" style="background-image: url(<%= asset_url('sample_tour.webp') %>);"></div>
+    </div>
+  </div>
+</div>
+<% end %>
