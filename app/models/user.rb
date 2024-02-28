@@ -22,4 +22,8 @@ class User < ApplicationRecord
       0.0
     end
   end
+
+  def show
+    @user = current_user
+  end
 end
