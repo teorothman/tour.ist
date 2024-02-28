@@ -17,6 +17,10 @@ class ToursController < ApplicationController
   end
 
   def my_tours
+    @current_user = current_user.id
+    @tours = Tour.select{ |tour| tour.user_id == @current_user}
+    @prev_tours = @tours.select{ |tour| tour.date < Date.today }
+    @upcoming_tours = @tours.select{ |tour| tour.date >=  Date.today }
   end
 
   # private

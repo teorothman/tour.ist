@@ -1,1 +1,17 @@
-<h1>My Tours</h1>
+<h1>Upcoming tours:</h1>
+<% if @upcoming_tours.count.zero?  %>
+  <p>You have no upcoming tours :(</p>
+<% else %>
+  <%= render partial: 'shared/my_tours_card', collection: @upcoming_tours, as: :tour %>
+<% end %>
+
+<h1>Previous tours:</h1>
+
+
+<% if @prev_tours.count.zero?  %>
+  <div class="container d-flex align-items-center justify-content-center">
+    <p>You have no previous tours :(</p>
+  </div>
+<% else %>
+  <%= render partial: 'shared/my_tours_card', collection: @prev_tours, as: :tour %>
+<% end %>
