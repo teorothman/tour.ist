@@ -1,27 +1,47 @@
-.my-tours-container{
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
 .my-tour-card{
-  height: 40vh;
-  border-bottom: 1px solid gray;
-  width: 80vw;
+  height: 20vh;
+  font-family: 'Montserrat', 'sans-serif';
+  background-color: white;
   margin-bottom: 2vh;
-}
-
-.my-tour-card-top-img{
-  height: 50%;
-  background-size: cover;
   border-radius: 15px;
-  background-repeat: no-repeat;
-}
-
-.my-tour-card-info-text{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+} a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h4{
+  font-weight: bold;
+}
+
+.my-tour-card-left{
+  width: 70%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+  margin-left: 3vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+} p {
+  font-size: smaller;
+  color: rgb(43, 42, 42);
+}
+
+.my-tour-card-right{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-tour-card-right-image{
+  height: 90%;
+  width: 100%;
+  background-size: cover;
+  border-radius: 15px;
+  background-position: center;
 }
