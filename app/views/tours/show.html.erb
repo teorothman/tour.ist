@@ -15,28 +15,23 @@
     <h3 class="card-trip-pricing"> Guide: <%= @tour.user.first_name %></h3>
     <img src="https://kitt.lewagon.com/placeholder/users/krokrob"
     class="card-trip-user avatar-bordered" />
-
   </div>
-</div>
 
-# Show Booking_form if user is Guide through tour created
-# Show Clients_booked if user is Client through tour booked
-
-<div>
-  <% if @tour.user == current_user %>
-    👉 show Guide version
-    <p>You have <%= @tour.bookings.count %> bookings</p>
-    <p>for your tour <%= @tour.title %> on <%= @tour.date %></p>
-      <%= @tour.bookings do |b| %>
-        <% if b.is_private = true %>
-          <p>* Private booking by <%= b.user.name %></p>
-        <% else %>
-          <p>People booking this tour:</p>
-          <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-
-          <p>Spots left: <%= @tour.seats_left %> </p>
-
+  <div>
+    <% if @tour.user == current_user %>
+      <p>You have <%= @tour.bookings.count %> bookings</p>
+      <p>for your tour <%= @tour.title %> on <%= @tour.date %></p>
+        <%= @tour.bookings do |b| %>
+          <% if b.is_private = true %>
+            <p>* Private booking by <%= b.user.name %></p>
+          <% else %>
+            <p>People booking this tour:</p>
+            <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
+          <% end %>
         <% end %>
-      <% end %>
-  <% end %>
+      <% else %>
+        <p>Thank you for booking with us!</p>
+    <% end %>
+  </div>
+
 </div>
