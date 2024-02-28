@@ -18,34 +18,6 @@
   </body>
   <% unless controller_name == 'sessions' ||
             controller_name == 'registrations' %>
-    <footer>
-    <div class="footer-container">
-      <div class="footer-section <%= 'current-section' if current_page?(root_path) %>">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <h3><%= link_to 'Explore', root_path %></h3>
-      </div>
-      <div class="footer-section">
-        <% if user_signed_in? %>
-          <div class="footer-section <%= 'current-section' if current_page?(my_tours_path) %>">
-          <i class="fa-regular fa-heart"></i>
-          <h3><%= link_to 'My Tours', my_tours_path %></h3>
-          </div>
-        <% else %>
-          <div class="footer-section <%= 'current-section' if current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <h3><%= link_to 'Log In', new_user_session_path %> /
-            <%= link_to 'Sign Up', new_user_registration_path %></h3>
-          </div>
-        <% end %>
-      </div>
-        <% if user_signed_in? %>
-          <div class="footer-section <%= 'current-section' if current_page?(profile_path) %>">
-            <i class="fa-regular fa-user"></i>
-            <h3><%= link_to 'Profile', profile_path %></h3>
-          </div>
-        <% end %>
-      </div>
-    </footer>
-    <% end %>
-
+    <%= render 'shared/footer' %>
+  <% end %>
 </html>
