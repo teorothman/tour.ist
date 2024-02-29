@@ -1,17 +1,16 @@
 class ToursController < ApplicationController
   def index
     @tours = Tour.all
+    return unless params[:query].present?
 
-    if params[:query].present?
-      sql_subquery = <<~SQL
+    sql_subquery = <<~SQL
       tours.title @@ :query
       OR tours.location @@ :query
       OR tours.language @@ :query
       OR tours.description @@ :query
+      OR categories.title @@ :query
     SQL
-      @tours = @tours.where(sql_subquery, query: params[:query])
-
-    end
+    @tours = @tours.joins(:category).where(sql_subquery, query: params[:query])
   end
 
   def show
@@ -24,15 +23,16 @@ class ToursController < ApplicationController
 
   def my_tours
     @current_user = current_user.id
-    @tours = Tour.select{ |tour| tour.user_id == @current_user}
-    @prev_tours = @tours.select{ |tour| tour.date < Date.today }
-    @upcoming_tours = @tours.select{ |tour| tour.date >=  Date.today }
+    @tours = Tour.where(user_id: @current_user)
+    @prev_tours = @tours.where("date < ?", Date.today)
+    @upcoming_tours = @tours.where("date >= ?", Date.today)
+
   end
 
   def create
     @tour = Tour.new(tour_params)
     @tour.user = current_user
-    
+
     if @tour.save
       redirect_to root_path, notice: "Your tour was succesfully created"
     else
