@@ -1,0 +1,15 @@
+
+.btn-group{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.red-btn-edit{
+  background-color: $red;
+}
+.blue-btn-edit{
+  background-color: $blue;
+}
