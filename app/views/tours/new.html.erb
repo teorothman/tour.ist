@@ -1,22 +1,20 @@
-<div class="container" style="padding-bottom: 45px;">
-  <h1>Create Your Own Tour</h1>
-  <%= simple_form_for @tour do |f| %>
-    <div>
-      <%= f.input :description, presence: true, error: 'Description is mandatory' %>
-      <%= f.input :title, presence: true %>
-      <%= f.input :duration, presence: true, numericality: { only_integer: true }%>
-      <%= f.input :max_spots, presence: true, numericality: { only_integer: true } %>
-    </div>
-    <div>
-      <%= f.input :price_per_person, presence: true, numericality: { only_integer: true } %>
-      <%= f.input :date, presence: true %>
-      <%= f.input :category_id, presence: true, collection: Category.all %>
-    </div>
-    <div>
-      <%= f.input :language, presence: true, collection: ["Spanish", "English", "French", "Swedish"] %>
-      <%= f.input :location, presence: true, collection: ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"] %>
-      <%= f.input :photo, as: :file %>
-    </div>
-    <%= f.submit class:"btn-red-primary" %>
-  <% end %>
-</div>
+<h1>Create Your Own Tour</h1>
+<%= simple_form_for @tour do |f| %>
+  <div>
+    <%= f.input :description, presence: true, error: 'Description is mandatory' %>
+    <%= f.input :title, presence: true %>
+    <%= f.input :duration, presence: true, numericality: { only_integer: true }%>
+    <%= f.input :max_spots, presence: true, numericality: { only_integer: true } %>
+  </div>
+  <div>
+    <%= f.input :price_per_person, presence: true, numericality: { only_integer: true } %>
+    <%= f.input :date, as: :string, input_html: { class: 'datetimepicker', data: { controller: "datepicker",  flatpickr_enable_time: "true" } }, prompt: "Select a Date and Time" %>
+    <%= f.input :category_id, presence: true, collection: Category.all, prompt: "Select a Category" %>
+  </div>
+  <div>
+    <%= f.input :language, presence: true, collection: ["Spanish", "English", "French", "Swedish"], prompt: "Select a Language"%>
+    <%= f.input :location, presence: true, collection: ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"], prompt: "Select a Location" %>
+    <%= f.input :photo, as: :file %>
+  </div>
+  <%= f.submit class:"btn-red-primary" %>
+<% end %>

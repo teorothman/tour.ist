@@ -1,4 +1,3 @@
-require 'faker'
 
 #Drop db
 
@@ -10,7 +9,7 @@ Category.destroy_all
 User.destroy_all
 
 # Creating three different categories
-puts "creating three categories"
+puts "Creating three categories"
 categories = []
 
 cat_1 = Category.create! title: 'Walking', description: 'Walking tour that requires... Walking'
@@ -21,12 +20,13 @@ cat_3 = Category.create! title: 'Biking', description: 'Tour for the ones who wa
 categories << cat_3
 
 # Creating 10 users with 2 tours each
-puts "creating 10 users with 2 tours each"
+puts "Creating 10 users with 2 tours each"
 
 languages = ["Spanish", "English", "French", "Swedish"]
-locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
-dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
+locations = ["Barcelona", "Madrid", "Toulouse", "Stockholm", "Marseille", "Paris", "Lyon"]
+dates = [DateTime.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
 
+puts "Creating admin user: Martin Miranda"
 admin_user = User.create! first_name: "Martin",
                           last_name: "Miranda",
                           email: "martin@gmail.com",
@@ -45,13 +45,37 @@ admin_user = User.create! first_name: "Martin",
     category = categories[rand(0..2)]
     title = "A #{category.title.downcase} tour of #{location}"
     description = "Explore the heart of #{location} with #{user.first_name}... #{category.description}"
-    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: user
+
+    # PHOTO FETCHING
+    file = URI.open("https://source.unsplash.com/random/?#{location}/")
+    tour = Tour.new(
+      title: title, description: description, duration: rand(30..90),
+      max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: user
+    )
+    tour.photo.attach(io: file, filename: "#{location}.png", content_type: "image/png")
+    tour.save
+
+    # Tour.create!
+    # title: title, description: description, duration: rand(30..90),
+    # max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], # category: category, language: languages[rand(0..3)], location: location, user: user
   end
 end
 
+
 # THIS WAS TO CREATE FIXED ADMIN TOUR AND BOOKINGS
-# tour_admin = Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: admin_user
-# Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3
+puts "Creating admin tour with bookings for Martin Miranda"
+file = URI.open("https://source.unsplash.com/random/?Barcelona/")
+category = categories[rand(0..2)]
+tour_admin = Tour.new(
+  title: "Christmas tour",
+  description: "Experience this christmasy time of the year in Barcelona like a local",
+  duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: DateTime.new(2023, 12, 12, 18, 30, 00), category: category, language: languages[rand(0..3)], location: "Barcelona", user: admin_user
+)
+tour_admin.photo.attach(io: file, filename: "Barcelona_by_Martin.png", content_type: "image/png")
+tour_admin.save
+
+
+Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3, is_private: false
 
 # Creating 3 bookings for last tour
 puts "Creating 3 bookings for last tour"
@@ -59,4 +83,3 @@ puts "Creating 3 bookings for last tour"
 User.excluding(Tour.last.user).sample(3).each do |u|
   Booking.create! tour: Tour.last, user: u, nb_of_people: 1
 end
-

@@ -7,13 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <div class="container">
-    <%= render "shared/flashes" %>
-    <%= yield %>
+      <%= render "shared/flashes" %>
+      <%= yield %>
     </div>
   </body>
   <% unless controller_name == 'sessions' ||
