@@ -8,7 +8,7 @@
   </div>
   <div>
     <%= f.input :price_per_person, presence: true, numericality: { only_integer: true } %>
-    <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, prompt: "Select a Date"%>
+    <%= f.input :date, as: :string, input_html: { class: 'datetimepicker', data: { controller: "datepicker",  flatpickr_enable_time: "true" } }, prompt: "Select a Date and Time" %>
     <%= f.input :category_id, presence: true, collection: Category.all, prompt: "Select a Category" %>
   </div>
   <div>
