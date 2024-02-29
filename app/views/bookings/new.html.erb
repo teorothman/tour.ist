@@ -8,7 +8,6 @@
       <% end %>
       <%= f.input :nb_of_people, collection: 1..@tour.spots_left, disabled: @tour.spots_left <= 0, input_html: { id: 'nb_of_people' }, required: true %>
       <p id="total_price" class="mb-3">Total Price: 0€</p>
-      <% @booking.total_price = @tour.price_per_person * @booking.nb_of_people.to_i %>
     </div>
     <%= f.submit class:"btn-red-primary", disabled: @tour.spots_left <= 0, style: "opacity: #{@tour.spots_left <= 0 ? '0.5' : '1'};" %>
     <% if @tour.spots_left <= 0 %>
@@ -18,7 +17,7 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('turbo:load', function() {
     var nbOfPeopleField = document.getElementById('nb_of_people');
     var isPrivateCheckbox = document.getElementById('is_private');
     var totalPriceField = document.getElementById('total_price');
