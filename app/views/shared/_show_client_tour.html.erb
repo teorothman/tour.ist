@@ -1,0 +1,23 @@
+
+  <div class="index-card-product">
+    <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(tour.photo.key) %>');">
+    </div>
+    <div class="index-card-product-text">
+      <div class="card-product-infos">
+        <h2>
+          <i class="fa-solid fa-star"></i> <%= tour.user.average_rating %> (<%= tour.user.total_rating %>) · <%= tour.duration %> minutes
+        </h2>
+        <h2>
+          <% if tour.title.length > 50 %>
+            <%= tour.title[0..50] + "..." %>
+          <% else %>
+            <%= tour.title %>
+          <% end %>
+      </div>
+      <div class="index-card-details">
+        <p> From <%= tour.price_per_person %> € / person</p>
+        <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+      </div>
+    </div>
+  </div>
+

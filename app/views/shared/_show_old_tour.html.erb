@@ -1,13 +1,22 @@
 <div class="container">
   <h1>Tour Details</h1>
 
-  <button class="btn btn-secondary btn-sm" >Add to calendar</button>
+  <div class="card-product">
+    <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
+      <div class="card-product-infos">
+        <h3><%= @tour.title %></h3>
+        <p><i class="fa-solid fa-language"></i><%= @tour.language %></p>
 
-  <% if @tour.user == current_user %>
-    <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
-  <% else %>
-    <%= render partial: 'shared/show_client_tour', locals: { tour: @tour } %>
-  <% end %>
+        <div>
+          <p>€<%= @tour.price_per_person %> / person</p>
+          <p>🗓️ <%= @tour.date %></p>
+          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
+          <p><i class="fa-solid fa-user"></i>Spots booked: <%= @tour.bookings.count %> / <%= @tour.max_spots %></p>
+        </div>
+        <p><%= @tour.description %></p>
+      </div>
+  </div>
+
 
     <div class="card-product">
       <div class="card-product-infos">
@@ -20,22 +29,20 @@
                 <p>* Private booking by <%= b.user.first_name %></p>
               <% else %>
                 <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-                <%= cl_image_tag b.user.avatar_id, class: "avatar-guide" %>
               <% end %>
           <% end %>
-
         <% else %>
             <div>
               <p>💚 Thank you for booking with us!</p>
               <p>Please arrive 10 min before the starting time and bring comfy clothes!</p>
               <div class="card-product-infos">
-                <%= cl_image_tag @tour.user.avatar_id, class: "avatar-guide" %>
-
-                <p> A tour by: <%= @tour.user.first_name %></p>
+                <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/krokrob"/>
+                <h2> A tour by: <%= @tour.user.first_name %></h2>
               </div>
             </div>
         <% end %>
+
       </div>
     </div>
-    <%= render 'shared/booking_button' %>
+
 </div>

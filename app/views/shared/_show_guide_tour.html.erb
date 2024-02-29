@@ -1,0 +1,43 @@
+<div class="card-product">
+    <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
+      <div class="card-product-infos">
+        <h3><%= @tour.title %></h3>
+        <p><i class="fa-solid fa-language"></i><%= @tour.language %></p>
+
+        <div>
+          <p>€<%= @tour.price_per_person %> / person</p>
+          <p>🗓️ <%= @tour.date %></p>
+          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
+          <p><i class="fa-solid fa-user"></i>Spots booked: <%= @tour.bookings.count %> / <%= @tour.max_spots %></p>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="index-card-product">
+    <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(@tour.photo.key) %>');">
+    </div>
+    <div class="index-card-product-text">
+
+      <div class="card-product-infos">
+        <h4><%= @tour.date %></h4>
+        <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
+
+        <h2>
+          <% if tour.title.length > 50 %>
+            <%= tour.title[0..50] + "..." %>
+          <% else %>
+            <%= tour.title %>
+          <% end %>
+        </h2>
+      </div>
+      <div class="index-card-details">
+        <p> Expected income <%= tour.price_per_person %> € </p>
+        <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+      </div>
+      <div class="index-card-details">
+        <p> Expected income <%= tour.price_per_person %> € </p>
+        <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+      </div>
+    </div>
+  </div>
