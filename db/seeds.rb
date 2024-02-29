@@ -1,4 +1,3 @@
-require 'faker'
 
 #Drop db
 
@@ -24,7 +23,7 @@ categories << cat_3
 puts "Creating 10 users with 2 tours each"
 
 languages = ["Spanish", "English", "French", "Swedish"]
-locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
+locations = ["Barcelona", "Madrid", "Toulouse", "Stockholm", "Marseille", "Paris", "Lyon"]
 dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
 
 puts "Creating admin user: Martin Miranda"
@@ -46,18 +45,35 @@ admin_user = User.create! first_name: "Martin",
     category = categories[rand(0..2)]
     title = "A #{category.title.downcase} tour of #{location}"
     description = "Explore the heart of #{location} with #{user.first_name}... #{category.description}"
-    Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: user
+
+    # PHOTO FETCHING
+    file = URI.open("https://source.unsplash.com/random/?#{location}/")
+    tour = Tour.new(
+      title: title, description: description, duration: rand(30..90),
+      max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: user
+    )
+    tour.photo.attach(io: file, filename: "#{location}.png", content_type: "image/png")
+    tour.save
+
+    # Tour.create!
+    # title: title, description: description, duration: rand(30..90),
+    # max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], # category: category, language: languages[rand(0..3)], location: location, user: user
   end
 end
 
+
 # THIS WAS TO CREATE FIXED ADMIN TOUR AND BOOKINGS
 puts "Creating admin tour with bookings for Martin Miranda"
-location = locations[rand(0..4)]
+file = URI.open("https://source.unsplash.com/random/?Barcelona/")
 category = categories[rand(0..2)]
-description = "Explore the heart of #{location} with #{admin_user.first_name}... #{category.description}"
-tour_admin = Tour.create! title: "Christmas tour",
-                          description: description,
-                          duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.new(2023,12,12), category: category, language: languages[rand(0..3)], location: location, user: admin_user
+tour_admin = Tour.new(
+  title: "Christmas tour",
+  description: "Experience this christmasy time of the year in Barcelona like a local",
+  duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.new(2023,12,12), category: category, language: languages[rand(0..3)], location: "Barcelona", user: admin_user
+)
+tour_admin.photo.attach(io: file, filename: "Barcelona_by_Martin.png", content_type: "image/png")
+tour_admin.save
+
 
 Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3, is_private: false
 
@@ -67,4 +83,3 @@ puts "Creating 3 bookings for last tour"
 User.excluding(Tour.last.user).sample(3).each do |u|
   Booking.create! tour: Tour.last, user: u, nb_of_people: 1
 end
-
