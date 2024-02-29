@@ -2,15 +2,15 @@
   <h1>Tour Details</h1>
 
   <div class="card-product">
-    <img class="tour-img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
       <div class="card-product-infos">
-        <h2>
-          <%= @tour.title %> in <%= @tour.location %> | 🗣️ <%= @tour.language %>
-        </h2>
+        <h2><%= @tour.title %></h2>
+        <h2><i class="fa-solid fa-language"></i><%= @tour.language %></h2>
+
         <div>
           <p>€<%= @tour.price_per_person %> / person</p>
           <p>🗓️ <%= @tour.date %></p>
-          <p>⌛️ <%= @tour.duration %> min</p>
+          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
           <p> 🟢 Spots left: <%= @tour.spots_left%> </p>
         </div>
         <p><%= @tour.description %></p>
