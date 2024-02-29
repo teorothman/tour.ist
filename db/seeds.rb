@@ -27,18 +27,29 @@ locations = ["Barcelona", "Madrid", "Toulouse", "Stockholm", "Marseille", "Paris
 dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
 
 puts "Creating admin user: Martin Miranda"
-admin_user = User.create! first_name: "Martin",
-                          last_name: "Miranda",
-                          email: "martin@gmail.com",
-                          password: 'topsecret'
+martin_pic = URI.open("https://source.unsplash.com/random/?face/")
+admin_user = User.new(
+  first_name: "Martin",
+  last_name: "Miranda",
+  email: "martin@gmail.com",
+  password: 'topsecret'
+)
+admin_user.photo.attach(io: martin_pic, filename: "martin.png", content_type: "image/png")
+admin_user.save
+
 
 10.times do
   f_name = Faker::Name.unique.first_name
 
-  user = User.create! first_name: f_name,
-                      last_name: Faker::Name.unique.last_name,
-                      email: "#{f_name.downcase}@gmail.com",
-                      password: 'topsecret'
+  face_pic = URI.open("https://source.unsplash.com/random/?face/")
+  user = User.new(
+    first_name: f_name,
+    last_name: Faker::Name.unique.last_name,
+    email: "#{f_name.downcase}@gmail.com",
+    password: 'topsecret'
+  )
+  user.photo.attach(io: face_pic, filename: "#{f_name}.png", content_type: "image/png")
+  user.save
 
   2.times do
     location = locations[rand(0..4)]
