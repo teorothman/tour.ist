@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_104414) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_141524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_104414) do
     t.integer "duration"
     t.integer "max_spots"
     t.integer "price_per_person"
-    t.date "date"
+    t.datetime "date"
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
     t.string "language"
