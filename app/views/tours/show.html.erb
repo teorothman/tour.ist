@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Tour Details</h1>
 
+  <button class="btn btn-secondary btn-sm" >Add to calendar</button>
+
   <% if @tour.user == current_user %>
     <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
   <% else %>
@@ -18,7 +20,7 @@
                 <p>* Private booking by <%= b.user.first_name %></p>
               <% else %>
                 <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-                <%= cl_image_tag b.user.avatar_id, crop: :fill, class:"avatar-large" %>
+                <%= cl_image_tag b.user.avatar_id, class: "avatar-guide" %>
               <% end %>
           <% end %>
 
