@@ -1,6 +1,17 @@
 class ToursController < ApplicationController
   def index
     @tours = Tour.all
+
+    if params[:query].present?
+      sql_subquery = <<~SQL
+      tours.title @@ :query
+      OR tours.location @@ :query
+      OR tours.language @@ :query
+      OR tours.description @@ :query
+    SQL
+      @tours = @tours.where(sql_subquery, query: params[:query])
+
+    end
   end
 
   def show
@@ -21,7 +32,7 @@ class ToursController < ApplicationController
   def create
     @tour = Tour.new(tour_params)
     @tour.user = current_user
-
+    
     if @tour.save
       redirect_to root_path, notice: "Your tour was succesfully created"
     else
