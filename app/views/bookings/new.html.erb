@@ -1,0 +1,44 @@
+<div class="container" style="padding-bottom: 45px;">
+  <h1>Book this tour</h1>
+  <%= simple_form_for [@tour, @booking] do |f| %>
+    <div>
+      <%= f.input :is_private, label: 'I want to make this tour private', disabled: @tour.has_reservations?, input_html: { id: 'is_private' }, presence: true%>
+      <% if @tour.has_reservations? %>
+        <p class="text-right mb-3" style="color: red;"><em>You cannot book this tour as a private tour because at least one spot has been reserved by another person.</em></p>
+      <% end %>
+      <%= f.input :nb_of_people, collection: 1..@tour.spots_left, disabled: @tour.spots_left <= 0, input_html: { id: 'nb_of_people' }, required: true %>
+      <p id="total_price" class="mb-3">Total Price: 0€</p>
+      <% @booking.total_price = @tour.price_per_person * @booking.nb_of_people.to_i %>
+    </div>
+    <%= f.submit class:"btn-red-primary", disabled: @tour.spots_left <= 0, style: "opacity: #{@tour.spots_left <= 0 ? '0.5' : '1'};" %>
+    <% if @tour.spots_left <= 0 %>
+      <div class="text-right mt-3" style="color: red;">You cannot book this tour as there are no spots left.</div>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var nbOfPeopleField = document.getElementById('nb_of_people');
+    var isPrivateCheckbox = document.getElementById('is_private');
+    var totalPriceField = document.getElementById('total_price');
+    var pricePerPerson = <%= @tour.price_per_person %>;
+    var maxSpots = <%= @tour.max_spots %>;
+
+    function calculateTotalPrice() {
+      var nbOfPeople = nbOfPeopleField.value;
+      var totalPrice;
+
+      if (isPrivateCheckbox.checked) {
+        totalPrice = pricePerPerson * (maxSpots - 1);
+      } else {
+        totalPrice = pricePerPerson * nbOfPeople;
+      }
+      totalPriceField.innerHTML = `Total Price: ${totalPrice}€`;
+    }
+
+    nbOfPeopleField.addEventListener('change', calculateTotalPrice);
+    isPrivateCheckbox.addEventListener('change', calculateTotalPrice);
+    calculateTotalPrice();
+  });
+</script>

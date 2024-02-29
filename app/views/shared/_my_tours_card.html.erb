@@ -10,7 +10,7 @@
             <h2 class="mt-1"><%= tour.title %></h2>
         <% end %>
         <p>Language: <%= tour.language %></p>
-        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.bookings.count %> / <%= tour.max_spots %></p>
+        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.max_spots - tour.spots_left %> / <%= tour.max_spots %></p>
       </div>
     </div>
 <% end %>
