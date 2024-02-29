@@ -1,23 +1,16 @@
 <%= link_to tour_path(tour.id) do %>
-<div class="container">
-  <h4 class="my-tour-card-header"><%= tour.date %></h4>
-  <div class="my-tour-card">
-    <div class="my-tour-card-left">
-      <div class="my-tour-card-left-text">
-        <p><%= tour.date %><p>
+    <div class="card-product">
+      <img class="tour-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0d/9f/02/caption.jpg"/>
+      <div class="card-product-infos">
+        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date %></strong></p>
         <% if tour.title.length > 38 %>
             <% array = tour.title.split %>
-            <h5><%= array[0..3].join(" ") + "..." %></h5>
+            <h2 class="mt-1"><%= array[0..3].join(" ") + "..." %></h2>
             <% else %>
-            <h5><%= tour.title %></h5>
+            <h2 class="mt-1"><%= tour.title %></h2>
         <% end %>
-        <p><%= tour.language %></p>
-        <p><%= tour.bookings.count %>/ <%= tour.max_spots %></p>
+        <p>Language: <%= tour.language %></p>
+        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.bookings.count %> / <%= tour.max_spots %></p>
       </div>
     </div>
-    <div class="my-tour-card-right">
-      <div class="my-tour-card-right-image" style="background-image: url(<%= asset_url('sample_tour.webp') %>);"></div>
-    </div>
-  </div>
-</div>
 <% end %>
