@@ -8,15 +8,15 @@
   <p><strong>Last Name</strong>: <%= @user.last_name %></p>
 </div>
 </div>
-<div class="d-grid gap-2 d-md-flex justify-content-center mt-5">
-<%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-outline-primary" %>
+<div class="btn-group">
+<%= link_to 'Edit Profile', edit_user_registration_path, class: "logout-btn red-btn-edit" %>
 <div class="log_out">
     <% unless current_page?(new_user_session_path) %>
       <% if user_signed_in? %>
-        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-secondary m-4 align-self-end"  %>
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete }, class: "logout-btn blue-btn-edit"  %>
       <% else %>
-        <%= button_to "Log in", new_user_session_path, method: :get, class: "btn btn-primary m-4"  %>
+        <%= link_to "Log in", new_user_session_path, method: :get, class: "btn btn-primary m-4"  %>
       <% end %>
     <% end %>
-  </div>
+</div>
 </div>

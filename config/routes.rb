@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :tours, only: [:show, :new, :create] do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:new, :create]
   end
+
+  resources :bookings, only: [:show]
 
   get 'my_tours', to: 'tours#my_tours', as: :my_tours
   get 'profile', to: 'users#show', as: :profile

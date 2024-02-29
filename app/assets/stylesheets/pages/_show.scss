@@ -1,0 +1,19 @@
+.tour-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 10000;
+}
+
+.tour-footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 2px 0;
+}

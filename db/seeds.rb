@@ -24,7 +24,7 @@ puts "Creating 10 users with 2 tours each"
 
 languages = ["Spanish", "English", "French", "Swedish"]
 locations = ["Barcelona", "Madrid", "Toulouse", "Stockholm", "Marseille", "Paris", "Lyon"]
-dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
+dates = [DateTime.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
 
 puts "Creating admin user: Martin Miranda"
 martin_pic = URI.open("https://source.unsplash.com/random/?face/")
@@ -80,7 +80,7 @@ category = categories[rand(0..2)]
 tour_admin = Tour.new(
   title: "Christmas tour",
   description: "Experience this christmasy time of the year in Barcelona like a local",
-  duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.new(2023, 12, 12), category: category, language: languages[rand(0..3)], location: "Barcelona", user: admin_user
+  duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: DateTime.new(2023, 12, 12, 18, 30, 00), category: category, language: languages[rand(0..3)], location: "Barcelona", user: admin_user
 )
 tour_admin.photo.attach(io: file, filename: "Barcelona_by_Martin.png", content_type: "image/png")
 tour_admin.save
