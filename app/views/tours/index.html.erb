@@ -1,5 +1,12 @@
-<div class="container">
-  <h1><%= image_tag "airbnb-logo.png", class: "logo" %></h1>
-
+<h1><%= image_tag "airbnb-logo.png", class: "logo" %></h1>
+  <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control tours-index-search-bar",
+              placeholder: "Look for a tour"
+          %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary search-btn", name: nil) do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+    <% end %>
   <%= render partial: 'shared/index_cards', collection: @tours, as: :tour %>
-</div>

@@ -1,6 +1,17 @@
 class ToursController < ApplicationController
   def index
     @tours = Tour.all
+
+    if params[:query].present?
+      sql_subquery = <<~SQL
+      tours.title @@ :query
+      OR tours.location @@ :query
+      OR tours.language @@ :query
+      OR tours.description @@ :query
+    SQL
+      @tours = @tours.where(sql_subquery, query: params[:query])
+
+    end
   end
 
   def show
