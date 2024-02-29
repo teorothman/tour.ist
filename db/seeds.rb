@@ -10,7 +10,7 @@ Category.destroy_all
 User.destroy_all
 
 # Creating three different categories
-puts "creating three categories"
+puts "Creating three categories"
 categories = []
 
 cat_1 = Category.create! title: 'Walking', description: 'Walking tour that requires... Walking'
@@ -21,12 +21,13 @@ cat_3 = Category.create! title: 'Biking', description: 'Tour for the ones who wa
 categories << cat_3
 
 # Creating 10 users with 2 tours each
-puts "creating 10 users with 2 tours each"
+puts "Creating 10 users with 2 tours each"
 
 languages = ["Spanish", "English", "French", "Swedish"]
 locations = ["Barceona", "Madrid", "Tolouse", "Stockholm", "Buenos Aires"]
 dates = [Date.tomorrow, Date.tomorrow + 5, Date.tomorrow + 10]
 
+puts "Creating admin user: Martin Miranda"
 admin_user = User.create! first_name: "Martin",
                           last_name: "Miranda",
                           email: "martin@gmail.com",
@@ -50,8 +51,15 @@ admin_user = User.create! first_name: "Martin",
 end
 
 # THIS WAS TO CREATE FIXED ADMIN TOUR AND BOOKINGS
-# tour_admin = Tour.create! title: title, description: description, duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: dates[rand(0..2)], category: category, language: languages[rand(0..3)], location: location, user: admin_user
-# Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3
+puts "Creating admin tour with bookings for Martin Miranda"
+location = locations[rand(0..4)]
+category = categories[rand(0..2)]
+description = "Explore the heart of #{location} with #{admin_user.first_name}... #{category.description}"
+tour_admin = Tour.create! title: "Christmas tour",
+                          description: description,
+                          duration: rand(30..90), max_spots: rand(1..15), price_per_person: rand(10..100), date: Date.new(2023,12,12), category: category, language: languages[rand(0..3)], location: location, user: admin_user
+
+Booking.create! tour: tour_admin, user: admin_user, nb_of_people: 3, is_private: false
 
 # Creating 3 bookings for last tour
 puts "Creating 3 bookings for last tour"
