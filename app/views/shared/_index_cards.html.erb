@@ -1,6 +1,6 @@
 <%= link_to tour_path(tour), class: "card-product-link" do %>
   <div class="index-card-product">
-    <div class="index-card-top-img">
+    <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(tour.photo.key) %>');">
     </div>
     <div class="index-card-product-text">
       <div class="card-product-infos">
