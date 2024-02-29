@@ -24,7 +24,11 @@ class User < ApplicationRecord
     end
   end
 
-  def show
-    @user = current_user
+  def avatar_id
+    if photo.attached?
+      photo.key
+    else
+      "arwpvws5od2yqqq6y3cf"
+    end
   end
 end

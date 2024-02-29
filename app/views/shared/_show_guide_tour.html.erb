@@ -1,0 +1,15 @@
+<div class="card-product">
+    <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
+      <div class="card-product-infos">
+        <h3><%= @tour.title %></h3>
+        <p><i class="fa-solid fa-language"></i><%= @tour.language %></p>
+
+        <div>
+          <p>€<%= @tour.price_per_person %> / person</p>
+          <p>🗓️ <%= @tour.date %></p>
+          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
+          <p><i class="fa-solid fa-user"></i>Spots booked: <%= @tour.bookings.count %> / <%= @tour.max_spots %></p>
+        </div>
+        <p><%= @tour.description %></p>
+      </div>
+  </div>

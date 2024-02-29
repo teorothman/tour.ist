@@ -1,7 +1,11 @@
 <div class="container">
   <h1>Tour Details</h1>
-  <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
 
+  <% if @tour.user == current_user %>
+    <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
+  <% else %>
+    <%= render partial: 'shared/show_client_tour', locals: { tour: @tour } %>
+  <% end %>
 
     <div class="card-product">
       <div class="card-product-infos">
@@ -14,16 +18,18 @@
                 <p>* Private booking by <%= b.user.first_name %></p>
               <% else %>
                 <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-                <%= cl_image_tag b.user.photo.key, crop: :fill, class:"avatar-large" %>
+                <%= cl_image_tag b.user.avatar_id, crop: :fill, class:"avatar-large" %>
               <% end %>
           <% end %>
+
         <% else %>
             <div>
               <p>💚 Thank you for booking with us!</p>
               <p>Please arrive 10 min before the starting time and bring comfy clothes!</p>
               <div class="card-product-infos">
-                <%= cl_image_tag @tour.user.photo.key, crop: :fill, class:"avatar-large" %>
-                <h2> A tour by: <%= @tour.user.first_name %></h2>
+                <%= cl_image_tag @tour.user.avatar_id, class: "avatar-guide" %>
+
+                <p> A tour by: <%= @tour.user.first_name %></p>
               </div>
             </div>
         <% end %>
