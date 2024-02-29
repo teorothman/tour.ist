@@ -80,3 +80,5 @@ end
 gem "devise"
 
 gem 'faker', '~> 3.2'
+
+gem "pg_search"
