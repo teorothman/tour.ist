@@ -1,0 +1,19 @@
+<%= link_to new_booking_review_path(tour.id, ) do %>
+  <div class="index-card-product">
+    <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(tour.photo.key) %>');">
+    </div>
+    <div class="index-card-product-text">
+      <div class="card-product-infos">
+        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date %></strong></p>
+        <% if tour.title.length > 38 %>
+            <% array = tour.title.split %>
+            <h2 class="mt-1"><%= array[0..3].join(" ") + "..." %></h2>
+            <% else %>
+            <h2 class="mt-1"><%= tour.title %></h2>
+        <% end %>
+        <p>Language: <%= tour.language %></p>
+        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.max_spots - tour.spots_left %> / <%= tour.max_spots %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
