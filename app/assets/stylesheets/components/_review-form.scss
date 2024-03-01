@@ -1,5 +1,5 @@
 .review-form-group{
-  height: 50vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,9 +8,10 @@
 
 .review-content{
   height: 20vh;
-  width: 50vw;
+  width: 75vw;
   margin-top: 5vh;
   margin-bottom: 5vh;
+  padding: 15px;
 }
 
 .review-form-group-rating{
