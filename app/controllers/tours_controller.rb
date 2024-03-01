@@ -11,6 +11,7 @@ class ToursController < ApplicationController
 
   def show
     @tour = Tour.find(params[:id])
+    @user = @tour.bookings.select { |b| b.user == current_user }
   end
 
   def new
@@ -34,6 +35,16 @@ class ToursController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @tour = Tour.find(params[:id])
+  end
+
+  def update
+    @tour = Tour.find(params[:id])
+    @tour.update(tour_params)
+    redirect_to my_tours_path(@tour)
   end
 
   private

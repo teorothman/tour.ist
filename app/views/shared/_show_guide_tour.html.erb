@@ -2,7 +2,7 @@
     <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
       <div class="card-product-infos">
         <h3><%= @tour.title %></h3>
-        <p><i class="fa-solid fa-language"></i><%= @tour.language %></p>
+        <p><i class="icon-margin fa-solid fa-language"></i><%= @tour.language %></p>
 
         <div>
           <p>€<%= @tour.price_per_person %> / person</p>

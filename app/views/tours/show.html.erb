@@ -5,9 +5,6 @@
     <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
   <% else %>
     <%= render partial: 'shared/show_client_tour', locals: { tour: @tour } %>
+     <%= render 'shared/booking_button' %>
   <% end %>
-
-
-
-    <%= render 'shared/booking_button' %>
 </div>
