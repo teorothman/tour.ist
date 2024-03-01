@@ -1,13 +1,18 @@
-<div class="container">
+<div data-controller="search-bar">
   <h1><%= image_tag "thanks-dall-e.png", class: "logo" %></h1>
-  <%= form_with url: root_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control tours-index-search-bar",
-              placeholder: "Look for a tour"
+    <%= form_with url: root_path, method: :get, class: "d-flex", data: { action: 'keyup->search-bar#search', search_bar_target: 'form' } do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control tours-index-search-bar",
+                placeholder: "Look for a tour",
+                data: { search_bar_target: 'search'}
           %>
-        <%= button_tag(type: 'submit', class: "btn btn-primary search-btn", name: nil) do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-    <% end %>
-  <%= render partial: 'shared/index_cards', collection: @tours, as: :tour %>
+              <%= button_tag( data: { 'search-bar-target' => 'button' }, type: 'submit', class: "btn btn-primary search-btn", name: nil) do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+      <% end %>
+  <div data-search-bar-target="list">
+  <%=  %>
+    <%= render partial: 'shared/index_cards', collection: @tours, as: :tour %>
+  </div>
+</div>
