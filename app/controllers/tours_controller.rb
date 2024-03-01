@@ -1,16 +1,12 @@
 class ToursController < ApplicationController
-  def index
-    @tours = Tour.all
-    return unless params[:query].present?
 
-    sql_subquery = <<~SQL
-      tours.title @@ :query
-      OR tours.location @@ :query
-      OR tours.language @@ :query
-      OR tours.description @@ :query
-      OR categories.title @@ :query
-    SQL
-    @tours = @tours.joins(:category).where(sql_subquery, query: params[:query])
+  def index
+    @tours = params[:query].present? ? Tour.search_for_tours(params[:query]) : Tour.all
+
+    respond_to do |format|
+      format.html
+      format.json # This will automatically use `index.json.jbuilder`
+    end
   end
 
   def show
