@@ -1,12 +1,11 @@
 <div class="container">
   <h1>Tour Details</h1>
 
-  <button class="btn btn-secondary btn-sm" >Add to calendar</button>
-
   <% if @tour.user == current_user %>
     <%= render partial: 'shared/show_guide_tour', locals: { tour: @tour } %>
   <% else %>
     <%= render partial: 'shared/show_client_tour', locals: { tour: @tour } %>
+     <%= render 'shared/booking_button' %>
   <% end %>
 
     <div class="card-product">
@@ -37,5 +36,4 @@
         <% end %>
       </div>
     </div>
-    <%= render 'shared/booking_button' %>
 </div>

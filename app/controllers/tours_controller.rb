@@ -11,6 +11,7 @@ class ToursController < ApplicationController
 
   def show
     @tour = Tour.find(params[:id])
+    @user = @tour.bookings.select { |b| b.user == current_user }
   end
 
   def new

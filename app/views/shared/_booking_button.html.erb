@@ -1,5 +1,13 @@
 <footer class="tour-footer">
   <div class="tour-footer-container">
-    <%= link_to 'Reserve Now', new_tour_booking_path(@tour), class: 'btn btn-primary' %>
+    <% if @tour.bookings.any? { |b| b.user == current_user }  %>
+        <% if @tour.date > DateTime.now %>
+          <%= link_to 'Add to calendar', new_tour_booking_path(@tour), class: 'btn btn-primary' %>
+          <% else %>
+          <%= link_to 'Write Review', new_booking_review_path(@user), class: 'btn btn-primary' %>
+          <% end %>
+    <% else %>
+      <%= link_to 'Reserve Now', new_tour_booking_path(@tour), class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </footer>
