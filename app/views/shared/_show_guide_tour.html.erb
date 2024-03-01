@@ -7,12 +7,21 @@
         <div>
           <p>€<%= @tour.price_per_person %> / person</p>
           <p>🗓️ <%= @tour.date %></p>
-          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
+          <p><i class="fa-solid fa-hourglass-start m-3"></i><%= @tour.duration %> min</p>
           <p><i class="fa-solid fa-user"></i>Spots booked: <%= @tour.bookings.count %> / <%= @tour.max_spots %></p>
         </div>
       </div>
   </div>
 
+          <h2>You have <%= @tour.bookings.count %> bookings</h2>
+              <% @tour.bookings.each do |b| %>
+                <% if b.is_private %>
+                  <p>* Private booking by <%= b.user.first_name %></p>
+                <% else %>
+                  <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
+                  <%= cl_image_tag b.user.avatar_id, class: "avatar-guide" %>
+                <% end %>
+              <% end %>
 
   <div class="index-card-product">
     <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(@tour.photo.key) %>');">
