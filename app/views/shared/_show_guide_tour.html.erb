@@ -1,28 +1,11 @@
-<div class="card-product">
-    <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill, class:"tour-img" %>
-      <div class="card-product-infos">
-        <h3><%= @tour.title %></h3>
-        <p><i class="icon-margin fa-solid fa-language"></i><%= @tour.language %></p>
-
-        <div>
-          <p>€<%= @tour.price_per_person %> / person</p>
-          <p>🗓️ <%= @tour.date %></p>
-          <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
-          <p><i class="fa-solid fa-user"></i>Spots booked: <%= @tour.bookings.count %> / <%= @tour.max_spots %></p>
-        </div>
-      </div>
-  </div>
-
-
-  <div class="index-card-product">
+ <div class="index-card-product">
     <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(@tour.photo.key) %>');">
     </div>
+
     <div class="index-card-product-text">
 
       <div class="card-product-infos">
-        <h4><%= @tour.date %></h4>
-        <p><i class="fa-solid fa-hourglass-start"></i><%= @tour.duration %> min</p>
-
+        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date.strftime("%B %d, %Y, at %I:%M %p") %></strong></p>
         <h2>
           <% if tour.title.length > 50 %>
             <%= tour.title[0..50] + "..." %>
@@ -31,13 +14,53 @@
           <% end %>
         </h2>
       </div>
+
       <div class="index-card-details">
-        <p> Expected income <%= tour.price_per_person %> € </p>
+        <p><i class="fa-solid fa-user"></i>   Spots available: <%= @tour.spots_left %>/<%= @tour.max_spots %></p>
         <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
       </div>
-      <div class="index-card-details">
-        <p> Expected income <%= tour.price_per_person %> € </p>
-        <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+
+    </div>
+</div>
+
+<% if @tour.bookings.any? == false %>
+  <button class="btn-red-primary"> Share to get clients </button>
+
+<% else %>
+  <div class="index-card-product">
+    <div class="index-card-product-text">
+
+      <div class="card-product-infos">
+        <h2>Bookings info</h2>
       </div>
+      <div class="card-product-infos">
+          <% @tour.bookings.each do |b| %>
+            <% if b.is_private %>
+              <p>* Private booking by <%= b.user.first_name %></p>
+            <% else %>
+              <div class="row d-flex justify-content-between">
+                <div class="mt-2 col-md-4">
+                  <%= cl_image_tag b.user.avatar_id, class: "avatar-guide img-fluid rounded-circle" %>
+                </div>
+                <div class="mt-1 col-md-8">
+
+                  <p><strong><%= b.user.first_name %></strong><strong> <%= b.user.last_name %></strong> · <%= b.nb_of_people %> people</p>
+                  <!-- Add any additional information here -->
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="mt-3">
+           <button class="btn-red-primary"> Email participants </button>
+          </div>
+
+      </div>
+
     </div>
   </div>
+
+<% end %>
+
+
+
+<%= render 'shared/footer' %>

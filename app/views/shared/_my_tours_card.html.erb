@@ -4,7 +4,7 @@
     </div>
     <div class="index-card-product-text">
       <div class="card-product-infos">
-        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date %></strong></p>
+        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date.strftime("%B %d, %Y, at %I:%M %p") %></strong></p>
         <% if tour.title.length > 38 %>
             <% array = tour.title.split %>
             <h2 class="mt-1"><%= array[0..3].join(" ") + "..." %></h2>

@@ -7,33 +7,4 @@
     <%= render partial: 'shared/show_client_tour', locals: { tour: @tour } %>
      <%= render 'shared/booking_button' %>
   <% end %>
-
-    <div class="card-product">
-      <div class="card-product-infos">
-
-        <% if @tour.user == current_user %>
-          <h2>You have <%= @tour.bookings.count %> bookings</h2>
-          <% @tour.bookings.each do |b| %>
-
-              <% if b.is_private %>
-                <p>* Private booking by <%= b.user.first_name %></p>
-              <% else %>
-                <p><%= b.user.first_name %> has booked for: <%= b.nb_of_people %> participants</p>
-                <%= cl_image_tag b.user.avatar_id, class: "avatar-guide" %>
-              <% end %>
-          <% end %>
-
-        <% else %>
-            <div>
-              <p>💚 Thank you for booking with us!</p>
-              <p>Please arrive 10 min before the starting time and bring comfy clothes!</p>
-              <div class="card-product-infos">
-                <%= cl_image_tag @tour.user.avatar_id, class: "avatar-guide" %>
-
-                <p> A tour by: <%= @tour.user.first_name %></p>
-              </div>
-            </div>
-        <% end %>
-      </div>
-    </div>
 </div>
