@@ -1,7 +1,4 @@
-<div>
-  <h5 class="card-text centered"><i class="fa-regular fa-calendar"></i> <%= @tour.date.strftime("%B %d, %Y, at %I:%M %p") %></h5>
-</div>
-
+<%= link_to tour_path(tour.id) do %>
   <div class="index-card-product">
     <div class="index-card-top-img" style="background-image: url('<%= cl_image_path(tour.photo.key) %>');">
     </div>
@@ -16,10 +13,12 @@
           <% else %>
             <%= tour.title %>
           <% end %>
+          </h2>
       </div>
       <div class="index-card-details">
-        <p> Number of tickets: <strong><%= @user_nb %></strong></p>
+        <p> From <%= tour.price_per_person %> € / person</p>
         <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
       </div>
     </div>
   </div>
+<% end %>

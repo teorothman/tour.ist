@@ -12,6 +12,8 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     @user = @tour.bookings.select { |b| b.user == current_user }
+    @booking = @tour.bookings.find_by(user: current_user)
+    @user_nb = @booking&.nb_of_people
   end
 
   def new
@@ -21,9 +23,13 @@ class ToursController < ApplicationController
   def my_tours
     @current_user = current_user.id
     @tours = Tour.where(user_id: @current_user)
+    @tours_user = Tour.joins(:bookings).where(bookings: { user: current_user }).distinct
+
     @prev_tours = @tours.where("date < ?", Date.today)
     @upcoming_tours = @tours.where("date >= ?", Date.today)
 
+    @prev_tours_user = @tours_user.where("date < ?", Date.today)
+    @upcoming_tours_user = @tours_user.where("date >= ?", Date.today)
   end
 
   def create
