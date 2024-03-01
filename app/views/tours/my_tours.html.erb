@@ -3,25 +3,29 @@
   <i class="fa-solid fa-person-walking"></i>
   <i class="fa-solid fa-person-biking"></i>
 </div>
-    <% if @upcoming_tours.count.zero?  %>
+    <% if @upcoming_tours.count.zero? && @upcoming_tours_user.count.zero? %>
     <div class="card-product">
       <div class="card-product-infos">
         <p class="text-center">You have no upcoming tours <i class="fa-regular fa-face-sad-tear"></i></p>
       </div>
     </div>
+    <% elsif @upcoming_tours.count.zero? %>
+      <%= render partial: 'shared/my_tours_client', collection: @upcoming_tours_user, as: :tour %>
     <% else %>
-      <%= render partial: 'shared/my_tours_card', collection: @upcoming_tours, as: :tour %>
+      <%= render partial: 'shared/my_tours_guide', collection: @upcoming_tours, as: :tour %>
     <% end %>
 
     <h1>Previous tours:</h1>
 
-    <% if @prev_tours.count.zero?  %>
+    <% if @prev_tours.count.zero? && @prev_tours_user.count.zero?  %>
       <div class="card-product">
         <div class="card-product-infos">
       <%# <div class="container d-flex align-items-center justify-content-center"> %>
           <p class="text-center">You have no previous tours <i class="fa-regular fa-face-sad-tear"></i></p>
         </div>
       </div>
+    <% elsif @prev_tours.count.zero? %>
+      <%= render partial: 'shared/my_tours_client', collection: @prev_tours_user, as: :tour %>
     <% else %>
-      <%= render partial: 'shared/my_tours_card', collection: @prev_tours, as: :tour %>
+      <%= render partial: 'shared/my_tours_guide', collection: @prev_tours, as: :tour %>
     <% end %>

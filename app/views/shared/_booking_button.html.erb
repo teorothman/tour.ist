@@ -2,10 +2,13 @@
   <div class="tour-footer-container">
     <% if @tour.bookings.any? { |b| b.user == current_user }  %>
         <% if @tour.date > DateTime.now %>
-          <%= link_to 'Add to calendar', new_tour_booking_path(@tour), class: 'btn btn-primary' %>
-          <% else %>
-          <%= link_to 'Write Review', new_booking_review_path(@user), class: 'btn btn-primary' %>
-          <% end %>
+          <% start_time = @tour.date.strftime("%Y%m%dT%H%M%SZ")%>
+          <% end_time = (@tour.date + @tour.duration.minutes).strftime("%Y%m%dT%H%M%SZ")%>
+          <% google_calendar_url = "https://www.google.com/calendar/render?action=TEMPLATE&text=#{CGI.escape(@tour.title)}&dates=#{start_time}/#{end_time}&details=#{CGI.escape("Plus d'infos sur le tour")}&location=#{CGI.escape(@tour.location)}&sf=true&output=xml"%>
+          <%= link_to 'Add to calendar', google_calendar_url, class: 'btn btn-primary', target: '_blank' %>
+        <% else %>
+        <%= link_to 'Write Review', new_booking_review_path(@user), class: 'btn btn-primary' %>
+        <% end %>
     <% else %>
       <%= link_to 'Reserve Now', new_tour_booking_path(@tour), class: 'btn btn-primary' %>
     <% end %>
