@@ -1,30 +1,30 @@
 footer {
-  position: fixed; /* Fix the position relative to the viewport */
-  bottom: 0; /* Anchor the footer to the bottom of the viewport */
-  left: 0; /* Stretch the footer across the bottom */
-  width: 100%; /* Ensure the footer extends full width */
-  background-color: #f8f9fa; /* Background color */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
   border-top: 1px solid #ccc;
-  padding: 10px 0; /* Padding for aesthetic spacing */
-  text-align: center; /* Center the footer content */
-  z-index: 1000; /* Ensure the footer stays on top of other content */
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1000;
 }
 
 .footer-container {
   display: flex;
-  justify-content: space-around; /* Adjust based on your layout */
-  align-items: center; /* Center items vertically */
-  background-color: #f8f9fa; /* Example background color */
-  padding: 2px 0; /* Add padding */
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 2px 0;
 }
 
 .footer-section {
-  text-align: center; /* Center the content */
+  text-align: center;
 }
 
 .footer-section i {
-  font-size: 22px; /* Increase icon size */
-  color: #6c757d; /* Default grey color */
+  font-size: 22px;
+  color: #6c757d;
 }
 
 .footer-section h3 {

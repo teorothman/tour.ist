@@ -1,5 +1,5 @@
 <div data-controller="search-bar">
-  <h1><%= image_tag "airbnb-logo.png", class: "logo" %></h1>
+  <h1><%= image_tag "thanks-dall-e.png", class: "logo" %></h1>
     <%= form_with url: root_path, method: :get, class: "d-flex", data: { action: 'keyup->search-bar#search', search_bar_target: 'form' } do %>
           <%= text_field_tag :query,
                 params[:query],

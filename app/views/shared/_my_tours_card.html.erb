@@ -4,19 +4,15 @@
     </div>
     <div class="index-card-product-text">
       <div class="card-product-infos">
-        <h2>
-          <i class="fa-regular fa-calendar-days"></i> <%= tour.date %>
-        </h2>
-        <h2>
-          <% if tour.title.length > 50 %>
-            <%= tour.title[0..50] + "..." %>
-          <% else %>
-            <%= tour.title %>
-          <% end %>
-      </div>
-      <div class="index-card-details">
-        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.bookings.count %> / <%= tour.max_spots %></p>
-        <p><i class="fa-solid fa-language"></i> <%= tour.language %></p>
+        <p><i class="fa-regular fa-calendar-days"></i> <strong><%= tour.date %></strong></p>
+        <% if tour.title.length > 38 %>
+            <% array = tour.title.split %>
+            <h2 class="mt-1"><%= array[0..3].join(" ") + "..." %></h2>
+            <% else %>
+            <h2 class="mt-1"><%= tour.title %></h2>
+        <% end %>
+        <p>Language: <%= tour.language %></p>
+        <p><i class="fa-solid fa-user"></i> Spots booked: <%= tour.max_spots - tour.spots_left %> / <%= tour.max_spots %></p>
       </div>
     </div>
   </div>

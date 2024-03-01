@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :tours
   has_many :bookings, through: :tours
   has_many :reviews, through: :bookings
+  has_one_attached :photo
 
   def total_rating
     if reviews.any?
@@ -23,7 +24,11 @@ class User < ApplicationRecord
     end
   end
 
-  def show
-    @user = current_user
+  def avatar_id
+    if photo.attached?
+      photo.key
+    else
+      "arwpvws5od2yqqq6y3cf"
+    end
   end
 end

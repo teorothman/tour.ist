@@ -1,6 +1,7 @@
 <h1>Profile</h1>
 
 <div class="card-product">
+  <%= cl_image_tag current_user.avatar_id, class: "avatar-guide" %>
   <div class="card-product-infos">
   <p><strong>Email</strong>: <%= @user.email %></p>
   <p><strong>First Name</strong>: <%= @user.first_name %></p>

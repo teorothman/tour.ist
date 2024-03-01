@@ -23,6 +23,11 @@ class Tour < ApplicationRecord
     # bookings.each do |b|
     #   n += b.nb_of_people
     # end
-    max_spots - bookings.pluck(:nb_of_people).sum
+    booked_spots = bookings.pluck(:nb_of_people).compact.sum
+    max_spots - booked_spots
+  end
+
+  def has_reservations?
+    bookings.sum(:nb_of_people) > 0
   end
 end
